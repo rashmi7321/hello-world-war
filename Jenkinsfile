@@ -18,8 +18,6 @@ pipeline {
 					sh "mvn clean install"
 				}
 			}
-
-			stage("publish to nexus") {
 			  stage('UploadToNexus'){
 				steps {
 					nexusPublisher nexusInstanceId: 'nexusrepo', nexusRepositoryId: 'sample', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: 'target/ROOT.war']], mavenCoordinate: [artifactId: 'sample', groupId: 'maven', packaging: 'war', version: '$BUILD_NUMBER']]]
