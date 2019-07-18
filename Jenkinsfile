@@ -20,17 +20,11 @@ pipeline {
 			}
 
 			stage("publish to nexus") {
+			  stage('UploadToNexus'){
 				steps {
- nexusPublisher nexusInstanceId: 'nexusrepo', \
-  nexusRepositoryId: 'mavenexample', \
-  packages: [[$class: 'MavenPackage', \
-  mavenAssetList: [[classifier: '', extension: '', \
-  filePath: "target/${pom.artifactId}-${pom.version}.${pom.packaging}"]], \
-  mavenCoordinate: [artifactId: "${pom.artifactId}", \
-  groupId: "${pom.groupId}", \
-  packaging: "${pom.packaging}", \
-  version: "${pom.version}"]]]
-		}
-        }
+					nexusPublisher nexusInstanceId: 'nexusrepo', nexusRepositoryId: 'sample', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: 'target/ROOT.war']], mavenCoordinate: [artifactId: 'sample', groupId: 'maven', packaging: 'war', version: '$BUILD_NUMBER']]]
+				}
+			}
+ 
     }
 }
