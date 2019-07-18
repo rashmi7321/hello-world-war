@@ -20,6 +20,6 @@ pipeline {
 
 			stage('UploadToNexus'){
 				steps {
-					nexusPublisher nexusInstanceId: '1704', nexusRepositoryId: 'sample', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: 'target/ROOT.war']], mavenCoordinate: [artifactId: 'sample', groupId: 'maven', packaging: 'war', version: '$BUILD_NUMBER']]]
+					nexusPublisher nexusInstanceId: 'nexusrepo', nexusRepositoryId: 'sample', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: 'target/ROOT.war']], mavenCoordinate: [artifactId: 'sample', groupId: 'maven', packaging: 'war', version: '$BUILD_NUMBER']]]
 				}
 			}
