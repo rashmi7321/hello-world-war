@@ -14,14 +14,21 @@ pipeline {
 			}
 			stage('Build') {
 				steps { 
-					sh "mvn deploy -DskipTests=true"
+					sh "mvn clean install"
 				}
 			}
 
-			stage('UploadToNexus'){
-				steps {
-					nexusPublisher nexusInstanceId: 'nexusrepo', nexusRepositoryId: 'sample', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: 'target/ROOT.war']], mavenCoordinate: [artifactId: 'sample', groupId: 'maven', packaging: 'war', version: '$BUILD_NUMBER']]]
-				}
-			}
+			stage("publish to nexus") {
+def pom = readMavenPom file: 'pom.xml'
+ nexusPublisher nexusInstanceId: 'nexusrepo', \
+  nexusRepositoryId: 'mavenexample', \
+  packages: [[$class: 'MavenPackage', \
+  mavenAssetList: [[classifier: '', extension: '', \
+  filePath: "target/${pom.artifactId}-${pom.version}.${pom.packaging}"]], \
+  mavenCoordinate: [artifactId: "${pom.artifactId}", \
+  groupId: "${pom.groupId}", \
+  packaging: "${pom.packaging}", \
+  version: "${pom.version}"]]]
+        }
     }
 }
