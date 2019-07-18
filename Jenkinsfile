@@ -3,6 +3,7 @@ pipeline {
 	agent any
 	environment {
 		MVN_HOME = '/opt/maven'
+		def pom = readMavenPom file: 'pom.xml'
 	}
 			stages{
    
@@ -20,7 +21,6 @@ pipeline {
 
 			stage("publish to nexus") {
 				steps {
-def pom = readMavenPom file: 'pom.xml'
  nexusPublisher nexusInstanceId: 'nexusrepo', \
   nexusRepositoryId: 'mavenexample', \
   packages: [[$class: 'MavenPackage', \
