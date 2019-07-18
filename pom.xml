@@ -7,17 +7,7 @@
 	<packaging>war</packaging>
 	<name>Hello World Web Application Repository</name>
 	<description>Simplest possible Java Webapp</description>
-        <distributionManagement>
-    <repository>
-      <id>nexus</id>
-      <url>http://192.168.50.140:8081/repository/mavenexample/</url>
-    </repository>
-    <snapshotRepository>
-      <id>nexus</id>
-      <url>http://192.168.50.140:8081/repository/mavenexample/</url>
-    </snapshotRepository>
-  </distributionManagement>
-
+        
 	<build>
 		<plugins>
 			<plugin>
