@@ -19,6 +19,7 @@ pipeline {
 			}
 
 			stage("publish to nexus") {
+				steps {
 def pom = readMavenPom file: 'pom.xml'
  nexusPublisher nexusInstanceId: 'nexusrepo', \
   nexusRepositoryId: 'mavenexample', \
@@ -29,6 +30,7 @@ def pom = readMavenPom file: 'pom.xml'
   groupId: "${pom.groupId}", \
   packaging: "${pom.packaging}", \
   version: "${pom.version}"]]]
+		}
         }
     }
 }
