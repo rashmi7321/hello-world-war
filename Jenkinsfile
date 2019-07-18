@@ -3,7 +3,6 @@ pipeline {
 	agent any
 	environment {
 		MVN_HOME = '/opt/maven'
-		def pom = readMavenPom file: 'pom.xml'
 	}
 			stages{
    
