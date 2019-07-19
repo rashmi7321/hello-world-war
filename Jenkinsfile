@@ -1,7 +1,9 @@
 
 pipeline {
     agent any
-       def pom = readMavenPom file: 'pom.xml'
+    environment {
+		def pom = readMavenPom file: 'pom.xml'
+	}
    
    
     stages {
