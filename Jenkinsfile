@@ -22,7 +22,20 @@ pipeline {
                 }
             }
         }
-        
+        stage("publish to nexus") {
+            steps {
+               def pom = readMavenPom file: 'pom.xml'
+                nexusPublisher nstepsexusInstanceId: 'localNexus', \
+                nexusRepositoryId: 'hello-world', \
+                packages: [[$class: 'MavenPackage', \
+                mavenAssetList: [[classifier: '', extension: '', \
+                filePath: "target/${pom.artifactId}-${pom.version}.${pom.packaging}"]], \
+               mavenCoordinate: [artifactId: "${pom.artifactId}", \
+               groupId: "${pom.groupId}", \
+               packaging: "${pom.packaging}", \
+               version: "${pom.version}"]]]
+            }
+        }       
         
     }
 }
