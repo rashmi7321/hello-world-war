@@ -1,7 +1,7 @@
 
 pipeline {
     agent any
-    
+       def pom = readMavenPom file: 'pom.xml'
    
    
     stages {
@@ -24,7 +24,7 @@ pipeline {
         }
         stage("publish to nexus") {
             steps {
-               def pom = readMavenPom file: 'pom.xml'
+               
                 nexusPublisher nstepsexusInstanceId: 'nexusrepo', \
                 nexusRepositoryId: 'mavenexample', \
                 packages: [[$class: 'MavenPackage', \
