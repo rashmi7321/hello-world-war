@@ -26,7 +26,7 @@ pipeline {
         }
         stage("publish to nexus") {
             steps {
-                nexusPublisher nstepsexusInstanceId: 'nexusrepo', \
+                nexusPublisher nexusInstanceId: 'nexusrepo', \
                 nexusRepositoryId: 'mavenexample', \
                 packages: [[$class: 'MavenPackage', \
                 mavenAssetList: [[classifier: '', extension: '', \
