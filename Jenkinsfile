@@ -11,7 +11,7 @@ pipeline {
             steps {
                 script {
                     // Let's clone the source
-                    git '';
+                    git 'https://github.com/rashmi7321/hello-world-war.git';
                 }
             }
         }
@@ -26,7 +26,6 @@ pipeline {
         }
         stage("publish to nexus") {
             steps {
-               
                 nexusPublisher nstepsexusInstanceId: 'nexusrepo', \
                 nexusRepositoryId: 'mavenexample', \
                 packages: [[$class: 'MavenPackage', \
