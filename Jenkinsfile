@@ -31,10 +31,10 @@ pipeline {
                 packages: [[$class: 'MavenPackage', \
                 mavenAssetList: [[classifier: '', extension: '', \
                 filePath: "target/${pom.artifactId}-${pom.version}.${pom.packaging}"]], \
-               mavenCoordinate: [artifactId: "${pom.artifactId}", \
-               groupId: "${pom.groupId}", \
-               packaging: "${pom.packaging}", \
-               version: "${pom.version}"]]]
+                mavenCoordinate: [artifactId: "${pom.artifactId}", \
+                groupId: "${pom.groupId}", \
+                packaging: "${pom.packaging}", \
+                version: "${pom.version}"]]]
             }
         }       
         
