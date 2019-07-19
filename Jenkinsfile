@@ -25,8 +25,8 @@ pipeline {
         stage("publish to nexus") {
             steps {
                def pom = readMavenPom file: 'pom.xml'
-                nexusPublisher nstepsexusInstanceId: 'localNexus', \
-                nexusRepositoryId: 'hello-world', \
+                nexusPublisher nstepsexusInstanceId: 'nexusrepo', \
+                nexusRepositoryId: 'mavenexample', \
                 packages: [[$class: 'MavenPackage', \
                 mavenAssetList: [[classifier: '', extension: '', \
                 filePath: "target/${pom.artifactId}-${pom.version}.${pom.packaging}"]], \
